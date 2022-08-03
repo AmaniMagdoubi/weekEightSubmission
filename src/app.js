@@ -6,7 +6,7 @@ const app = async (yargsObj) => {
     await sequelize.sync({ alter: true }); 
     if (yargsObj.create) {
         //add movie to db
-        await createMovie({ title: yargsObj, actor: yargsObj.actor, director: yargsObj.director });
+        await createMovie({ title: yargsObj.title, actor: yargsObj.actor, director: yargsObj.director });
 
     } else if (yargsObj.read) {
         //list movies from db
@@ -14,17 +14,17 @@ const app = async (yargsObj) => {
 
     } else if (yargsObj.update) {
         //update a movie from db
-        await updateMovie({  }, {
+        await updateMovie({ actor: yargsObj.actor }, {
             where: {
-
+                actor: yargsObj.newActor,
             }
         }); 
 
-    } else if (yargsObj.delete) {
+    } else if (yargsObj.destroy) {
         //delete a movie from db
         await deleteMovie({
             where: {
-
+                director: null,
             }
         }); 
 
